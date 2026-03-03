@@ -47,24 +47,3 @@ Then apply/switch a theme. Omarchy renders to:
 1. Edit `colors.css.tpl`.
 2. Apply a theme (`omarchy-theme-set <theme>` or your normal theme workflow).
 3. Check `~/.config/omarchy/current/theme/colors.css`.
-
-Quick unresolved-placeholder check:
-
-```bash
-rg '{{' "$HOME/.config/omarchy/current/theme/colors.css"
-```
-
-## Tilebar example
-
-`examples/tilebar-v1` is a local snapshot from `~/Projects/jobo-bars/tilebar-v1`.
-
-Refresh it:
-
-```bash
-mkdir -p examples
-cp -a "$HOME/Projects/jobo-bars/tilebar-v1" examples/
-```
-
-## Development
-
-Developer and release workflows are documented in [DEVELOPMENT.md](/home/oldjobobo/Projects/oldjobobo-custom-omarchy-templates/DEVELOPMENT.md).
