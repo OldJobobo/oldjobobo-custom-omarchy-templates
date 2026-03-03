@@ -1,5 +1,5 @@
 # Omarchy Templates
-Current version: `0.1.6`
+Current version: `0.1.5`
 
 User-facing Omarchy template overrides and ready-to-copy examples.
 

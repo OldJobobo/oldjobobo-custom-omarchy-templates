@@ -5,6 +5,8 @@ This repository stores user-managed Omarchy template overrides.
 
 - `colors.css.tpl`: Main template source. Omarchy renders this into `colors.css` using theme `colors.toml` values.
 - `waybar.css.tpl`: Waybar template source. Omarchy renders this into `waybar.css` using theme `colors.toml` values.
+- `scripts/install.sh`: Interactive installer for linking repo `*.tpl` files into Omarchy overrides.
+- `scripts/uninstall.sh`: Interactive uninstaller for removing repo-managed template links from Omarchy overrides.
 - `scripts/bump-version.sh`: SemVer helper that updates `VERSION`.
 - `VERSION`: Single source of truth for project version.
 - `CHANGELOG.md`: Human-readable release notes.
