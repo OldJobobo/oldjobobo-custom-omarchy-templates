@@ -1,0 +1,301 @@
+@import "../omarchy/current/theme/colors.css";
+
+/* Theme palette aliases from Omarchy colors.css (generated from colors.toml) */
+@define-color base @background;
+@define-color surface @color0;
+@define-color overlay @color8;
+@define-color muted @color4;
+@define-color subtle @color7;
+@define-color text @foreground;
+@define-color love @color5;
+@define-color gold @accent;
+@define-color rose @color3;
+@define-color pine @color6;
+@define-color foam @color2;
+@define-color iris @color4;
+@define-color highlight_low @color0;
+@define-color highlight_med @color8;
+@define-color highlight_high @color7;
+
+/* --- Global-Settings ---*/
+* {
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 12px;
+  font-weight: bold;
+  min-height: 0;
+}
+
+/* --- Waybar ---*/
+window#waybar {
+  background-color: transparent;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+window#waybar.empty #window {
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+#waybar.empty .modules-center {
+  opacity: 0;
+}
+
+/* --- Shared Layout --- */
+#workspaces,
+#tray,
+#window,
+#mpris,
+#cpu,
+#clock,
+#battery,
+#network,
+#memory,
+#backlight,
+#bluetooth,
+#pulseaudio,
+#custom-weather,
+#custom-update,
+#idle_inhibitor,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-updatespacman {
+  margin: 6px 3px;
+  border-radius: 2px;
+}
+
+/* --- Workspaces --- */
+#workspaces button {
+  min-height: 22px;
+  padding: 0 6px;
+  margin: 0 6px 0 0;
+  border-radius: 2px;
+  background-color: @surface;
+  color: @text;
+}
+
+#workspaces button.active {
+  background-color: @gold;
+  color: @base;
+}
+
+#workspaces button:hover {
+  background-color: @highlight_med;
+  color: @gold;
+}
+
+/* --- General Modules --- */
+#tray,
+#window,
+#mpris,
+#cpu,
+#clock,
+#battery,
+#network,
+#memory,
+#backlight,
+#bluetooth,
+#pulseaudio,
+#custom-weather,
+#custom-update,
+#idle_inhibitor,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-updatespacman {
+  min-width: 14px;
+  min-height: 22px;
+  padding: 4px 8px;
+}
+
+/* --- Hover right module --- */
+#clock:hover,
+#tray:hover,
+#custom-expand-icon:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#battery:hover,
+#bluetooth:hover,
+#backlight:hover,
+#custom-omarchy:hover,
+#custom-weather:hover,
+#custom-update:hover,
+#idle_inhibitor:hover,
+#custom-screenrecording-indicator:hover,
+#custom-updatespacman:hover,
+#network:hover,
+#pulseaudio:hover {
+  opacity: 0.9;
+  background-color: @highlight_high;
+  color: @text;
+}
+
+/* --- Gruvebox-Colors-Module --- */
+#window {
+  background-color: @highlight_low;
+  color: @gold;
+}
+
+#custom-omarchy {
+  background-color: @surface;
+  color: @gold;
+}
+
+#custom-update,
+#custom-updatespacman {
+  background-color: @pine;
+  color: @base;
+}
+
+#clock {
+  background-color: @surface;
+  color: @gold;
+}
+
+#idle_inhibitor {
+  background-color: @muted;
+  color: @base;
+}
+
+#idle_inhibitor.activated {
+  background-color: @foam;
+  color: @base;
+}
+
+#idle_inhibitor.deactivated {
+  background-color: @muted;
+  color: @base;
+}
+
+#custom-weather {
+  background-color: @overlay;
+  color: @foam;
+}
+
+#tray {
+  background-color: @overlay;
+  color: @gold;
+}
+
+#battery {
+  background-color: @foam;
+  color: @base;
+}
+
+#cpu {
+  background-color: @gold;
+  color: @base;
+}
+
+#memory {
+  background-color: @pine;
+  color: @base;
+}
+
+#network {
+  background-color: @iris;
+  color: @base;
+}
+
+#pulseaudio {
+  background-color: @love;
+  color: @base;
+}
+
+#backlight {
+  background-color: @rose;
+  color: @base;
+}
+
+#bluetooth {
+  background-color: @foam;
+  color: @base;
+}
+
+/* Specific Module */
+#tray > .passive {
+  -gtk-icon-effect: dim;
+  color: @gold;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @transparent;
+  color: @gold;
+}
+
+#tray * {
+  color: @gold;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* --- Tooltip ---*/
+tooltip {
+  opacity: 1;
+  padding: 4px;
+  background-color: @surface;
+  border: 1px solid @highlight_med;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+tooltip label {
+  color: @text;
+  font-weight: normal;
+}
+
+/* --- Warnings --- */
+#cpu.critical,
+#memory.critical,
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+  background-color: @love;
+  color: @base;
+}
+
+/* Specific animation Module */
+#custom-screenrecording-indicator {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  color: transparent;
+}
+
+#custom-screenrecording-indicator.active {
+  color: @love;
+  animation-name: blink-recording;
+  animation-duration: 0.5s;
+}
+
+@keyframes blink-recording {
+  to {
+    color: @surface;
+  }
+}
+
+#mpris {
+  margin-left: 0;
+  background-color: @iris;
+  color: @base;
+  animation: repeat;
+  animation-name: blink;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    color: @highlight_med;
+  }
+}

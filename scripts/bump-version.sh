@@ -8,9 +8,12 @@ usage() {
 
 [[ $# -eq 1 ]] || usage
 bump_type="$1"
-[[ -f VERSION ]] || { echo "VERSION file not found"; exit 1; }
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd -- "$script_dir/.." && pwd)"
+version_file="$repo_root/VERSION"
+[[ -f "$version_file" ]] || { echo "VERSION file not found: $version_file"; exit 1; }
 
-current="$(tr -d '[:space:]' < VERSION)"
+current="$(tr -d '[:space:]' < "$version_file")"
 IFS='.' read -r major minor patch <<< "$current"
 
 case "$bump_type" in
@@ -32,7 +35,7 @@ case "$bump_type" in
 esac
 
 next="${major}.${minor}.${patch}"
-printf '%s\n' "$next" > VERSION
+printf '%s\n' "$next" > "$version_file"
 
 echo "Bumped VERSION: $current -> $next"
 echo "Remember to update CHANGELOG.md before commit."

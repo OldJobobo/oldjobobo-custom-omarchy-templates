@@ -1,43 +1,70 @@
 # Omarchy Templates
 
-User-maintained Omarchy template overrides, currently focused on generating a `colors.css` file from theme `colors.toml` values.
+User-facing Omarchy template overrides and ready-to-copy examples.
 
-## What this project contains
+## Why this exists
 
-- `colors.css.tpl`: Mustache-style placeholder template consumed by Omarchy's template renderer.
-- `VERSION`: Current project version (SemVer).
-- `CHANGELOG.md`: Human-readable change history.
-- `scripts/bump-version.sh`: Simple helper to bump `VERSION` (major/minor/patch).
+Omarchy themes store colors in `colors.toml`, but many GTK-based layer-shell clients style from GTKCSS.
+This repo bridges that gap by rendering theme values into GTKCSS so those clients can stay synced with the active theme.
 
-## How it is wired into Omarchy
+Current implementation target:
 
-This project file is symlinked into Omarchy user overrides:
+- Waybar, via the provided `waybar.css.tpl` template.
 
-- Source: `~/Projects/omarchy-templates/colors.css.tpl`
-- Link: `~/.config/omarchy/themed/colors.css.tpl`
+## What you get
 
-Omarchy renders `colors.css.tpl` to `colors.css` during theme apply, using values from `colors.toml`.
+- `colors.css.tpl`: Theme color template Omarchy renders into `colors.css`.
+- `waybar.css.tpl`: Waybar-ready example for GTK layer-shell color usage.
+- `examples/tilebar-v1`: Tilebar example (`config.jsonc` + `style.css`).
 
-## Editing workflow
+## Install
 
-1. Edit `colors.css.tpl` in this repo.
-2. Apply/switch theme in Omarchy.
-3. Verify generated output in `~/.config/omarchy/current/theme/colors.css`.
+### Install (recommended)
 
-## Versioning
-
-This repo uses simple SemVer in `VERSION`:
-
-- Patch: fixes, small corrections (`0.1.0` -> `0.1.1`)
-- Minor: backward-compatible additions (`0.1.0` -> `0.2.0`)
-- Major: breaking changes (`0.1.0` -> `1.0.0`)
-
-Bump version:
+Links all `*.tpl` files from this repo into `~/.config/omarchy/themed/`.
 
 ```bash
-./scripts/bump-version.sh patch
-./scripts/bump-version.sh minor
-./scripts/bump-version.sh major
+./scripts/install-templates.sh
 ```
 
-After bumping, add a short note in `CHANGELOG.md` and commit.
+![Installer preview](preview-install.png)
+
+- Requires `gum` in `PATH`.
+- Prompts on conflicts: `Replace`, `Skip`, or `Abort`.
+
+### Install (manual)
+
+Copy or link template files (`*.tpl`) from this repo into:
+
+- `~/.config/omarchy/themed/`
+
+Then apply/switch a theme. Omarchy renders to:
+
+- Output file: `~/.config/omarchy/current/theme/colors.css`
+
+## Typical usage
+
+1. Edit `colors.css.tpl`.
+2. Apply a theme (`omarchy-theme-set <theme>` or your normal theme workflow).
+3. Check `~/.config/omarchy/current/theme/colors.css`.
+
+Quick unresolved-placeholder check:
+
+```bash
+rg '{{' "$HOME/.config/omarchy/current/theme/colors.css"
+```
+
+## Tilebar example
+
+`examples/tilebar-v1` is a local snapshot from `~/Projects/jobo-bars/tilebar-v1`.
+
+Refresh it:
+
+```bash
+mkdir -p examples
+cp -a "$HOME/Projects/jobo-bars/tilebar-v1" examples/
+```
+
+## Development
+
+Developer and release workflows are documented in [DEVELOPMENT.md](/home/oldjobobo/Projects/oldjobobo-custom-omarchy-templates/DEVELOPMENT.md).
