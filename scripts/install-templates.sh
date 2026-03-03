@@ -57,11 +57,30 @@ for src in "${template_paths[@]}"; do
 
   action="replace"
   if [[ -e "$dest" || -L "$dest" ]]; then
-    if [[ -L "$dest" && "$(readlink -- "$dest")" == "$src" ]]; then
-      gum style --foreground 244 "Already linked: $name"
-      skipped=$((skipped + 1))
-      continue
+    if [[ -L "$dest" ]]; then
+      resolved_src="$(readlink -f -- "$src")"
+      if resolved_dest="$(readlink -f -- "$dest" 2>/dev/null)" && [[ "$resolved_dest" == "$resolved_src" ]]; then
+        gum style --foreground 244 "Already linked: $name"
+        skipped=$((skipped + 1))
+        continue
+      fi
     fi
+
+    if [[ -L "$dest" ]]; then
+      existing_target="$(readlink -- "$dest")"
+      existing_desc="Existing symlink target: $existing_target"
+    else
+      existing_desc="Existing entry: regular file or directory"
+    fi
+
+    gum style \
+      --border rounded \
+      --padding "0 1" \
+      --margin "0 0" \
+      "Conflict for: $name
+Source: $src
+Destination: $dest
+$existing_desc"
 
     choice="$(
       gum choose "Replace" "Skip" "Abort"
@@ -107,4 +126,3 @@ Failed:  $failed"
 if [[ $failed -gt 0 ]]; then
   exit 1
 fi
-

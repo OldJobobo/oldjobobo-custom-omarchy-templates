@@ -41,6 +41,7 @@ Copy or link template files (`*.tpl`) from this repo into:
 Then apply/switch a theme. Omarchy renders to:
 
 - Output file: `~/.config/omarchy/current/theme/colors.css`
+- Output file: `~/.config/omarchy/current/theme/waybar.css`
 
 ## Typical usage
 
