@@ -44,6 +44,6 @@ Then apply/switch a theme. Omarchy renders to:
 
 ## Typical usage
 
-1. Edit `colors.css.tpl`.
+1. Edit your Waybar `style.css` to use colors defined in `colors.css`.
 2. Apply a theme (`omarchy-theme-set <theme>` or your normal theme workflow).
-3. Check `~/.config/omarchy/current/theme/colors.css`.
+3. Waybar picks up the active theme colors through the generated `colors.css`.
