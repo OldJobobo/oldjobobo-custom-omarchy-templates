@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here.
 
-## [Unreleased]
+## [0.1.1] - 2026-03-03
 - Refocused `README.md` for end users.
 - Added installer documentation for `scripts/install-templates.sh` (recommended and manual install paths).
 - Added installer screenshot (`preview-install.png`) to README.
